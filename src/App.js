@@ -37,6 +37,8 @@ function App() {
     setStyle(-1);
   };
 
+  const image_url = `/imgs/${content_names[content]}_${style_names[style]}.png`;
+  console.log(image_url);
   return (
     <Box sx={{ height: '100vh', width: '100vw', backgroundImage: `url(${background})` }}>
       <Typography align="center" variant="h3" sx={{ padding: 2 }}>Image Art Styler</Typography>
@@ -65,6 +67,9 @@ function App() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
               <img style={{ margin: 6 }} height="200px" src={style_urls[style]} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img style={{ margin: 6 }} height="200px" src={image_url} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Button variant="contained" sx={{ m: 2 }} onClick={handleRestart}>Start Over</Button>
