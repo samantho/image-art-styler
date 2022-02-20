@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
+import { Footer } from "./Footer.js";
 import background from "./canvas-texture.jpeg";
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 
   return (
     <Box sx={{ height: '100vh', width: '100vw', backgroundImage: `url(${background})` }}>
-      <Typography align="center" variant="h4" sx={{ padding: 2 }}>Image Art Styler</Typography>
+      <Typography align="center" variant="h3" sx={{ padding: 2 }}>Image Art Styler</Typography>
       {content == -1 ?
         <React.Fragment>
           <Typography align="center" variant="h6">Select an image</Typography>
@@ -69,7 +70,7 @@ function App() {
             </div>
           </React.Fragment>
       }
-
+      <Footer />
     </Box>
   );
 }
