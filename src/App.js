@@ -18,9 +18,11 @@ function App() {
     "https://www.artranked.com/images/16/1600461a08e47fec9d58fc3fbb379d90.jpeg",
   ];
 
+  const content_names = ["well", "space", "spider", "ramses", "tower"];
+  const style_names = ["scream", "night", "butterfly", "tree"];
+
   const [content, setContent] = useState(-1);
   const [style, setStyle] = useState(-1);
-
 
   const handleClickContent = (id) => {
     setContent(id);
@@ -63,7 +65,6 @@ function App() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
               <img style={{ margin: 6 }} height="200px" src={style_urls[style]} />
-
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Button variant="contained" sx={{ m: 2 }} onClick={handleRestart}>Start Over</Button>
