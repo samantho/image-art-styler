@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Typography } from "@mui/material";
-import './styles.css';
+import { Box, Button, Typography } from "@mui/material";
+import background from "./canvas-texture.jpeg";
 
 function App() {
   const content_urls = [
@@ -35,18 +35,17 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <Typography align="center" variant="h4" sx={{ margin: 2 }}>Artistic Stylization</Typography>
+    <Box sx={{ height: '100vh', width: '100vw', backgroundImage: `url(${background})` }}>
+      <Typography align="center" variant="h4" sx={{ padding: 2 }}>Image Art Styler</Typography>
       {content == -1 ?
         <React.Fragment>
-          <Typography align="center" variant="h6">Pick an image</Typography>
+          <Typography align="center" variant="h6">Select an image</Typography>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             {content_urls.map((url, i) => <img style={{ margin: 6 }} height="200px" className="img" key={i} src={url} onClick={() => handleClickContent(i)} />)}
           </div>
         </React.Fragment>
         : style == -1 ?
           <React.Fragment>
-            <Typography align="center" variant="h6">Selected Image</Typography>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
             </div>
@@ -55,7 +54,7 @@ function App() {
               {style_urls.map((url, i) => <img style={{ margin: 6 }} height="200px" className="img" key={i} src={url} onClick={() => handleClickStyle(i)} />)}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Button onClick={() => setContent(-1)}>Back</Button>
+              <Button variant="contained" sx={{ m: 2 }} onClick={() => setContent(-1)}>Back</Button>
             </div>
           </React.Fragment>
           :
@@ -66,14 +65,12 @@ function App() {
 
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Button onClick={handleRestart}>Start Over</Button>
+              <Button variant="contained" sx={{ m: 2 }} onClick={handleRestart}>Start Over</Button>
             </div>
           </React.Fragment>
       }
 
-
-
-    </React.Fragment>
+    </Box>
   );
 }
 
