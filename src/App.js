@@ -69,7 +69,7 @@ function App() {
               <img style={{ margin: 6 }} height="200px" src={style_urls[style]} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <img style={{ margin: 6 }} height="200px" src={image_url} />
+              <img style={{ margin: 6 }} height="280px" src={image_url} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Button variant="contained" sx={{ m: 2 }} onClick={handleRestart}>Start Over</Button>
