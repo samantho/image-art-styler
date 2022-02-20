@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
+import pythonNotebook from './ImageArtStyler.ipynb';
 
 export const Footer = () => {
     return (
@@ -7,7 +8,7 @@ export const Footer = () => {
                 <Typography variant="h6">Want to create your own custom image?</Typography>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button variant="contained" sx={{ m: 1 }}>Download Python Notebook</Button>
+                <Button variant="contained" sx={{ m: 1 }}><a href={pythonNotebook} style={{ textDecoration: 'none', color: 'white' }} download="ImageArtStyler.ipynb">Download Python Notebook</a></Button>
             </div>
         </Box>
     );
