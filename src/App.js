@@ -43,7 +43,7 @@ function App() {
 
   return (
     <Box sx={{ height: "100vh", width: '100vw' }}>
-      <img style={{ height: '100vh', width: '100vw', objectFit: "cover", position: 'fixed', top: 0, left: 0, zIndex: -10 }} src="https://github.com/samantho/image-art-styler/blob/main/src/canvas-texture.jpeg?raw=true" />
+      <img style={{ height: '100vh', width: '100vw', objectFit: "cover", position: 'fixed', top: 0, left: 0, zIndex: -10 }} src="https://github.com/samantho/image-art-styler/blob/main/public/imgs/canvas-texture.jpeg?raw=true" />
       <Box sx={{ minHeight: "calc(100vh - 110px)", width: '100vw' }}>
         <Typography align="center" variant="h3" sx={{ padding: 2 }}>Image Art Styler</Typography>
         {content == -1 ?
