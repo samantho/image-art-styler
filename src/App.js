@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { Footer } from "./Footer.js";
-import background from "./canvas-texture.jpeg";
+
+const viewportWidth = window.innerWidth;
 
 function App() {
   const content_urls = [
@@ -37,47 +38,65 @@ function App() {
     setStyle(-1);
   };
 
-  const image_url = `/imgs/${content_names[content]}_${style_names[style]}.png`;
-  console.log(image_url);
+  // const image_url = `/imgs/${content_names[content]}_${style_names[style]}.png`;
+  const image_url = `https://raw.githubusercontent.com/samantho/image-art-styler/main/public/imgs/${content_names[content]}_${style_names[style]}.png`
+
   return (
-    <Box sx={{ height: '100vh', width: '100vw', backgroundImage: `url(${background})` }}>
-      <Typography align="center" variant="h3" sx={{ padding: 2 }}>Image Art Styler</Typography>
-      {content == -1 ?
-        <React.Fragment>
-          <Typography align="center" variant="h6">Select an image</Typography>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {content_urls.map((url, i) => <img style={{ margin: 6 }} height="200px" className="img" key={i} src={url} onClick={() => handleClickContent(i)} />)}
-          </div>
-        </React.Fragment>
-        : style == -1 ?
-          <React.Fragment>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
-            </div>
-            <Typography align="center" variant="h6">Select a style</Typography>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              {style_urls.map((url, i) => <img style={{ margin: 6 }} height="200px" className="img" key={i} src={url} onClick={() => handleClickStyle(i)} />)}
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Button variant="contained" sx={{ m: 2 }} onClick={() => setContent(-1)}>Back</Button>
-            </div>
-          </React.Fragment>
-          :
-          <React.Fragment>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
-              <img style={{ margin: 6 }} height="200px" src={style_urls[style]} />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <img style={{ margin: 6 }} height="280px" src={image_url} />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Button variant="contained" sx={{ m: 2 }} onClick={handleRestart}>Start Over</Button>
-            </div>
-          </React.Fragment>
-      }
+    <Box sx={{ height: "100vh", width: '100vw' }}>
+      <img style={{ height: '100vh', width: '100vw', objectFit: "cover", position: 'fixed', top: 0, left: 0, zIndex: -10 }} src="https://github.com/samantho/image-art-styler/blob/main/src/canvas-texture.jpeg?raw=true" />
+      <Box sx={{ minHeight: "calc(100vh - 110px)", width: '100vw' }}>
+        <Typography align="center" variant="h3" sx={{ padding: 2 }}>Image Art Styler</Typography>
+        {content == -1 ?
+          <ContentOptions content_urls={content_urls} handleClickContent={handleClickContent} />
+          : style == -1 ?
+            <React.Fragment>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
+              </div>
+              <StyleOptions style_urls={style_urls} handleClickStyle={handleClickStyle} />
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button variant="contained" sx={{ m: 2 }} onClick={() => setContent(-1)}>Back</Button>
+              </div>
+            </React.Fragment>
+            :
+            <React.Fragment>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img style={{ margin: 6 }} height="200px" src={content_urls[content]} />
+                <img style={{ margin: 6 }} height="200px" src={style_urls[style]} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img style={{ margin: 6 }} height="280px" src={image_url} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button variant="contained" sx={{ m: 2 }} onClick={handleRestart}>Start Over</Button>
+              </div>
+            </React.Fragment>
+        }
+      </Box>
       <Footer />
     </Box>
+  );
+}
+
+const ContentOptions = ({ content_urls, handleClickContent }) => {
+  return (
+    <React.Fragment>
+      <Typography align="center" variant="h6">Select an image</Typography>
+      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {content_urls.map((url, i) => <img style={{ margin: 6 }} height="200px" className="img" key={i} src={url} onClick={() => handleClickContent(i)} />)}
+      </div>
+    </React.Fragment>
+  );
+}
+
+const StyleOptions = ({ style_urls, handleClickStyle }) => {
+  return (
+    <React.Fragment>
+      <Typography align="center" variant="h6">Select a style</Typography>
+      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {style_urls.map((url, i) => <img style={{ margin: 6 }} height="200px" className="img" key={i} src={url} onClick={() => handleClickStyle(i)} />)}
+      </div>
+    </React.Fragment>
   );
 }
 
